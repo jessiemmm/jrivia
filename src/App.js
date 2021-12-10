@@ -3,13 +3,19 @@ import './App.css';
 import Home from "./components/Home"
 import Login from "./components/Login"
 import Signin from "./components/Signin"
+import CreateTrivia from "./components/CreateTrivia";
 
 function App() {
   const [signIn, setSignIn] = useState(false);
   const [username, setUsername] = useState('');
 
+    return (
+        <>
+        <Home/>
+    </>
+    )
 
-  if (signIn) {
+ /* if (signIn) {
     return (
       <div className="App">
         <Home />
@@ -22,7 +28,7 @@ function App() {
         <Signin />
       </div>
     );
-  }
+  }*/
 }
 
 export default App;

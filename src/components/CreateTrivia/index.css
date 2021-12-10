@@ -1,0 +1,50 @@
+textarea {
+    background-color: black;
+    width: 100%;
+    color: white;
+    border: none;
+}
+
+.wd-tweet-btn {
+    background: none;
+    border: none;
+}
+
+.btn {
+    margin-bottom: 10px;
+}
+
+.wd-tweet-avatar-img {
+    margin-left: 15px;
+}
+
+.wd-create-btn {
+    width: 70%;
+}
+
+.body {
+    margin: 50px;
+}
+
+#categories {
+    float:right;
+    border: 10px;
+}
+
+.form {
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 500px;
+    padding: 20px;
+    width: 320px;
+}
+
+Form {
+    border: 5px red;
+    border: solid;
+}
+
+Form.Label {
+    font-size: 20px;
+}

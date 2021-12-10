@@ -1,6 +1,7 @@
 import service from "../services/trivia-service"
 import {useState, useEffect} from "react";
 import { render } from "@testing-library/react";
+import CreateTrivia from "./CreateTrivia";
 
 function Home(props) {
     
@@ -12,10 +13,13 @@ function Home(props) {
     });
     
     return (
+        <div>
+    <CreateTrivia/>
         <div className="home">
             {trivia.map(element => {
                 return(<p>{element.question}</p>) 
             })}
+        </div>
         </div>
     );
     
