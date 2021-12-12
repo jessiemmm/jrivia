@@ -1,34 +1,31 @@
 import { useState } from 'react';
+import {BrowserRouter,Route, Link, Routes} from "react-router-dom";
 import './App.css';
 import Home from "./components/Home"
-import Login from "./components/Login"
+import Register from "./components/Register"
 import Signin from "./components/Signin"
+
+import Profile from "./components/Profile"
+
 import CreateTrivia from "./components/CreateTrivia";
 
 function App() {
   const [signIn, setSignIn] = useState(false);
   const [username, setUsername] = useState('');
 
-    return (
-        <>
-        <Home/>
-    </>
-    )
 
- /* if (signIn) {
-    return (
-      <div className="App">
-        <Home />
+  return (
+    <BrowserRouter>
+      <div>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/profile/:username" element={<Profile />} />
+        </Routes>
       </div>
-    );
-  } else {
-    return (
-      <div className="App">
-        <Login />
-        <Signin />
-      </div>
-    );
-  }*/
+    </BrowserRouter>
+  )
 }
 
 export default App;
