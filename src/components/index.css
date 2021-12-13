@@ -1,0 +1,11 @@
+
+.card {
+    max-width: 40rem;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+
+.privacy-link {
+    float: right;
+}

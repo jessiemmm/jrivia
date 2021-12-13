@@ -9,17 +9,23 @@ function NavBar() {
             return(
                 <>
                     <Link to={'/profile/' + name}>
-                        <button type ="button" className="btn btn-outline-secondary">
-                            <i className="far fa-user"></i>
-                        </button>
+                        <div className="user-img">
+                            <i className="far fa-user"> My Profile</i>
+                        </div>
                     </Link>
                     <Logout/>
                     </>)
         } else {
             return (
+                <>
+                    <Link to="/register">
+                        <p className="mt-3">Register</p>
+                    </Link>
+                    <p className="mt-3"> &nbsp; | &nbsp;</p>
                 <Link to="/signin">
-                    <button type ="button" className="btn btn-secondary">Sign In</button>
+                    <p className="mt-3">Sign In</p>
                 </Link>
+            </>
                 
             )
         }

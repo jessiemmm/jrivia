@@ -9,3 +9,11 @@
 .far {
 
 }
+
+#profile-img {
+    border-radius: 150px;
+}
+
+.profile-photo {
+    margin-left: 10px;
+}

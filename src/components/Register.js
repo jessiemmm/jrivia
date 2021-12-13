@@ -1,6 +1,7 @@
 import {useState} from "react"
 import {Link} from "react-router-dom"
 import userService from "../services/user-service"
+import NavBar from "./NavBar";
 
 function Register() {
     const [username, setUsername] = useState("")
@@ -37,6 +38,7 @@ function Register() {
 
     return (
         <div>
+            <NavBar/>
             <div>
                 <label>Username</label>
                 <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} />

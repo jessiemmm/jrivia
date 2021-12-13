@@ -2,7 +2,6 @@ import {useEffect, useState} from "react"
 import { useParams } from "react-router-dom";
 import userService from "../../services/user-service"
 import "./index.css";
-import {Link} from "react-router-dom";
 import NavBar from "../NavBar";
 
 function Profile() {
@@ -35,17 +34,19 @@ function Profile() {
     }
 
     const showPassword = () => {
-        if(user.username === username) {
-            return (
-                <div className="row">
-                    <div className="col-4">
-                        Password: <span> {user.password}&#183;&#183;&#183;&#183;&#183;&#183;&#183;</span>
+        if(localStorage.getItem("user")) {
+            if(user.username === username) {
+                return (
+                    <div className="row">
+                        <div className="col-4">
+                            Password: <span> {user.password}&#183;&#183;&#183;&#183;&#183;&#183;&#183;</span>
+                        </div>
+                        <div className="col-2">
+                            <i class="fas fa-pencil-alt" onClick={() => setEditPassword(true)}></i>
+                        </div>
                     </div>
-                    <div className="col-2">
-                        <i class="fas fa-pencil-alt" onClick={() => setEditPassword(true)}></i>
-                    </div>
-                </div>
-            )
+                )
+            }
         }
     }
     useEffect(() => {
@@ -59,28 +60,36 @@ function Profile() {
         <div className="whole-page">
             <div className="top-section">
                 <div className="row">
-                    <div className="col-4">
-                        <i className="far fa-user"></i>
+                    <div className="col-4 profile-photo">
+                        <img src="/images/default-profile.jpg" id="profile-img"></img>
                     </div>
-                    <div className="col-8">
+                    <div className="col-7">
                         <h2>{u.username}</h2>
-                        <div className="row">
-                            <div className="col">
-                                <p>Correct: {u.correct_tally}</p>
-                            </div>
-                            <div className="col">
-                                <p>Incorrect: {u.incorrect_tally}</p>
+                        <div className="card text-white bg-dark">
+                            <div className="card-body">
+                                <p className="card-text">
+                                    {/*user info*/}
+                                    <div className="row">
+                                        <div className="col">
+                                            <p>Correct: {u.correct_tally}</p>
+                                        </div>
+                                        <div className="col">
+                                            <p>Incorrect: {u.incorrect_tally}</p>
+                                        </div>
+                                    </div>
+                                    <p>User type: {u.user_type}</p>
+                                    {showPassword()}
+                                    {showEditPassword()}
+                                </p>
                             </div>
                         </div>
-                        <p>User type: {u.user_type}</p>
-                        {showPassword()}
-                        {showEditPassword()}
+                        <div className = "favorite-questions mt-5">
+                            <h2>Favorite Questions</h2>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className = "favorite-questions">
-                <h3>Favorite Questions</h3>
-            </div>
+
         </div>
         </>
         
