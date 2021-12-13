@@ -10,7 +10,7 @@ function Logout() {
     }
 
     return (
-        <button onClick={logout}>
+        <button type="button" className="btn btn-secondary" onClick={logout}>
             Logout
         </button>
     )

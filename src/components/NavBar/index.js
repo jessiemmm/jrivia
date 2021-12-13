@@ -1,12 +1,17 @@
 import Logout from "../Logout";
+import {Link} from "react-router-dom"
 
 function NavBar() {
     const userButton = () => {
         if(localStorage.getItem("user")) {
+            //TODO: add user icon link to user profile
             return(<Logout/>)
         } else {
             return (
-                <p>Sign In</p>
+                <Link to="/signin">
+                    <button type ="button" className="btn btn-secondary">Sign In</button>
+                </Link>
+                
             )
         }
     }
