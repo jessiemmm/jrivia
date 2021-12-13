@@ -1,4 +1,5 @@
-import {useLayoutEffect, useState} from "react"
+import {useLayoutEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import triviaService from "../../services/trivia-service";
 import userService from "../../services/user-service";
 import "./Question.css"
@@ -6,7 +7,6 @@ import "./Question.css"
 function Question({trivia}) {
     const u = JSON.parse(localStorage.getItem("user"));
     const [selected, setSelected] = useState("");
-
     const [options] = useState(trivia.incorrect_answers.concat(trivia.correct_answer).sort((a, b) => 0.5 - Math.random()));
     const [bookmarkColor, setBookmarkColor] = useState("");
 
@@ -77,6 +77,8 @@ function Question({trivia}) {
     
 
     return (
+        <Link to={`/details/${trivia._id}`} style={{textDecoration: "none"}}>
+
         
         <div className="container card border-primary" id="question-container">
             <div className="row" id="question-row">
@@ -103,6 +105,7 @@ function Question({trivia}) {
             {renderSubmit()}
             
         </div>
+        </Link>
         
     )
 }

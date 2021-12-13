@@ -53,8 +53,7 @@ function Profile() {
     }
     useEffect(() => {
         getUser()
-        console.log(u)
-    }, []);
+    }, [getUser, u]);
 
     return (
         <>

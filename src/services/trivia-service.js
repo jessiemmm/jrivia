@@ -19,7 +19,7 @@ export const createTrivia = (trivia) =>
     }).then(response => response.json());
 
 export const findTriviaById = (id) =>
-    fetch(`${URL}/${id}`)
+    fetch(`${URL}/id/${id}`)
       .then(response => response.json());
 
 export const findTriviaByQuestion = (question) =>
