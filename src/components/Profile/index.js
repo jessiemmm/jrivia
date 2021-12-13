@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import userService from "../../services/user-service"
 import "./index.css";
 import {Link} from "react-router-dom";
+import NavBar from "../NavBar";
 
 function Profile() {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -53,6 +54,8 @@ function Profile() {
     }, []);
 
     return (
+        <>
+        <NavBar/>
         <div className="whole-page">
             <div className="top-section">
                 <div className="row">
@@ -79,6 +82,7 @@ function Profile() {
                 <h3>Favorite Questions</h3>
             </div>
         </div>
+        </>
         
     )
 

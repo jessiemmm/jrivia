@@ -7,7 +7,8 @@ import Signin from "./components/Signin"
 import Profile from "./components/Profile/index"
 import Search from "./components/Search"
 import './vendors/bootstrap/vapor-bootstrap.min.css'
-import CreateTrivia from "./components/CreateTrivia";
+import Privacy from "./components/Privacy";
+import About from "./components/About";
 
 function App() {
   const [signIn, setSignIn] = useState(false);
@@ -23,6 +24,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
     </BrowserRouter>

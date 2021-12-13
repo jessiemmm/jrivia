@@ -1,9 +1,9 @@
 import userService from "../services/user-service"
 import {useEffect, useState} from "react"
 import  { Link } from 'react-router-dom'
+import NavBar from "./NavBar";
 
 function Signin() {
-    
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
@@ -36,6 +36,7 @@ function Signin() {
 
     return (
         <div>
+            <NavBar/>
             <input type="text" id="username-input" onChange={event => setUsername(event.target.value)}/>
             <input type="password" id="password-input" onChange={event => setPassword(event.target.value)}/>
             <button onClick={attemptSignin}>
