@@ -4,9 +4,8 @@ import './App.css';
 import Home from "./components/Home"
 import Register from "./components/Register"
 import Signin from "./components/Signin"
-
-import Profile from "./components/Profile"
-
+import Profile from "./components/Profile/index"
+import './vendors/bootstrap/vapor-bootstrap.min.css'
 import CreateTrivia from "./components/CreateTrivia";
 
 function App() {
