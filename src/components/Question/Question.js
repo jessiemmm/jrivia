@@ -5,11 +5,8 @@ function Question({trivia}) {
 
     const [selected, setSelected] = useState("");
 
-    const options = trivia.incorrect_answers.concat(trivia.correct_answer);
-    const [shuffledOptions, setShuffledOptions] = useState(options);
-    useEffect(() => {
-         setShuffledOptions(options.sort((a, b) => 0.5 - Math.random()));
-    }, [])
+    const [options] = useState(trivia.incorrect_answers.concat(trivia.correct_answer).sort((a, b) => 0.5 - Math.random()));
+    
 
     const submit= () => {
         if(selected === "") {
@@ -52,7 +49,7 @@ function Question({trivia}) {
 
     return (
         
-        <div className="container" id="question-container">
+        <div className="container card border-primary" id="question-container">
             <div className="row" id="question-row">
                 <div className="col-10">
                     <p>{trivia.question}</p>
@@ -64,9 +61,12 @@ function Question({trivia}) {
             </div>
             <div className="container" id="answers-container">
                 { // display each option
-                shuffledOptions.map((v) => {
+                options.map((v, i) => {
                     return(
-                        <p><input type="radio" name={trivia._id} value={v} onChange={event=> setSelected(event.target.value)}/>{v}</p>
+                        <div>
+                            <input className="btn-check" type="radio" name={trivia._id} id={i + "_" + trivia._id} value={v} onChange={event=> setSelected(event.target.value)} />
+                            <label className="btn btn-outline-primary" htmlFor={i + "_" + trivia._id}>{v}</label>
+                        </div>
                     )
                 })}
             </div>

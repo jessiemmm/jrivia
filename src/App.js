@@ -5,6 +5,7 @@ import Home from "./components/Home"
 import Register from "./components/Register"
 import Signin from "./components/Signin"
 import Profile from "./components/Profile/index"
+import Search from "./components/Search"
 import './vendors/bootstrap/vapor-bootstrap.min.css'
 import CreateTrivia from "./components/CreateTrivia";
 
@@ -18,6 +19,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/profile/:username" element={<Profile />} />

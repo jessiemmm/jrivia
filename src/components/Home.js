@@ -1,6 +1,5 @@
 import service from "../services/trivia-service"
 import {useState, useEffect} from "react";
-import { render } from "@testing-library/react";
 import CreateTrivia from "./CreateTrivia";
 import Logout from "./Logout";
 import Question from "./Question/Question";
@@ -17,10 +16,13 @@ function Home(props) {
     
     return (
         <div>
+            <div style={{position:"sticky", top:"0", zIndex:"100"}} >
+                <NavBar />
+            </div>
+            
             <p>
                 {localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).username : <></>}
             </p>
-            <NavBar/>
             <CreateTrivia/>
             <div className="home">
                 {trivia.map(trivia => {

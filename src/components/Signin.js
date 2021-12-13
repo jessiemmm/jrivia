@@ -7,10 +7,14 @@ function Signin() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
-    const [signedin, setSignedIn] = useState(false);
+    const [signedin, setSignedIn] = useState("");
     
+    useEffect(() => {
+        if(localStorage.getItem("user"))
+            setSignedIn("Welcome " + JSON.parse(localStorage.getItem("user")).username)
+    }, [])
 
-    const attemptSignin = () => {
+    function attemptSignin(){
         const user = {
             username: username,
             password: password
@@ -18,17 +22,15 @@ function Signin() {
 
         userService.login(user).then(
             res => {
+                console.log()
                 if(res.msg === "logging in") {
-                    setSignedIn(true);
                     localStorage.setItem("user", JSON.stringify(res.existingUser[0]));
+                    setSignedIn("Welcome " + JSON.parse(localStorage.getItem("user")).username);
                 }
             }
-        )
+        );
+        
     }
-    
-    //if(localStorage.getItem("user")) {
-    // //   return (<Navigate to="/" />)
-    //} else {
 
     return (
         <div>
@@ -37,12 +39,9 @@ function Signin() {
             <button onClick={attemptSignin}>
                 SUBMIT
             </button>
-            <p>{(signedin? 
-                (<p>You are signed in, {JSON.parse(localStorage.getItem("user")).username}! <Link to="/"><button>Home</button></Link></p>)
-                : <></>
-                )}
-            </p>
 
+            <p value={signedin}>{signedin}</p>
+            <Link to="/" >Home</Link>
         </div>
     )
     //}

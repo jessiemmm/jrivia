@@ -13,7 +13,7 @@ function NavBar() {
 
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav style={{position:"sticky", top:"0", zIndex:"100"}} className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">JRIVIA</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"

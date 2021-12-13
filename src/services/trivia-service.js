@@ -22,6 +22,10 @@ export const findTriviaById = (id) =>
     fetch(`${URL}/${id}`)
       .then(response => response.json());
 
+export const findTriviaByQuestion = (question) =>
+      fetch(`${URL}/question/${question}`)
+        .then(response => response.json());
+
 export const updateTrivia = (trivia) =>
       fetch(`${URL}/${trivia._id}`, {
         method: 'PUT',
@@ -38,5 +42,6 @@ export default {
     deleteTrivia, 
     createTrivia, 
     findTriviaById,
-    updateTrivia
+    updateTrivia,
+    findTriviaByQuestion
 };
