@@ -1,19 +1,18 @@
 .whole-page {
-    margin: 20px;
+    margin: 5%;
 }
 
-.profile-page {
-    text-align: center;
-}
 
 .far {
 
 }
 
 #profile-img {
-    border-radius: 150px;
+    border-radius: 12px;
+    width: 100%;
 }
 
-.profile-photo {
-    margin-left: 10px;
+
+.card {
+    margin: 0px;
 }

@@ -60,10 +60,10 @@ function Profile() {
         <div className="whole-page">
             <div className="top-section">
                 <div className="row">
-                    <div className="col-4 profile-photo">
+                    <div className="col-3">
                         <img src="/images/default-profile.jpg" id="profile-img"></img>
                     </div>
-                    <div className="col-7">
+                    <div className="col-9">
                         <h2>{u.username}</h2>
                         <div className="card text-white bg-dark">
                             <div className="card-body">
