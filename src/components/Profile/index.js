@@ -8,9 +8,44 @@ function Profile() {
     const user = JSON.parse(localStorage.getItem("user"));
     const { username } = useParams();
     const [u, setU] = useState({});
+    const [editPassword, setEditPassword] = useState(false);
+    const [newPassword, setNewPassword] = useState("");
 
     const getUser = () => {
         userService.findUserByName(username).then(res => setU(res[0]))
+    }
+
+    const updatePassword = () => {
+        user.password = newPassword
+        userService.updateUser(user).then(res => console.log(res));
+        localStorage.setItem("user", JSON.stringify(user));
+    }
+
+    const showEditPassword = () => {
+        if(editPassword){
+            return (
+                <div>
+                    <input type="text" onChange={event => setNewPassword(event.target.value)}/>
+                    <button onClick={updatePassword}>CHANGE PASSWORD</button>
+                </div>
+                
+            )
+        }
+    }
+
+    const showPassword = () => {
+        if(user.username === username) {
+            return (
+                <div className="row">
+                    <div className="col-4">
+                        Password: <span> {user.password}&#183;&#183;&#183;&#183;&#183;&#183;&#183;</span>
+                    </div>
+                    <div className="col-2">
+                        <i class="fas fa-pencil-alt" onClick={() => setEditPassword(true)}></i>
+                    </div>
+                </div>
+            )
+        }
     }
     useEffect(() => {
         getUser()
@@ -35,6 +70,8 @@ function Profile() {
                             </div>
                         </div>
                         <p>User type: {u.user_type}</p>
+                        {showPassword()}
+                        {showEditPassword()}
                     </div>
                 </div>
             </div>

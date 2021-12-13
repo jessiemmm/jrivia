@@ -26,6 +26,8 @@ function Signin() {
                 if(res.msg === "logging in") {
                     localStorage.setItem("user", JSON.stringify(res.existingUser[0]));
                     setSignedIn("Welcome " + JSON.parse(localStorage.getItem("user")).username);
+                } else {
+                    setSignedIn(res.msg);
                 }
             }
         );

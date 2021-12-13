@@ -1,15 +1,21 @@
-import {useEffect, useState} from "react"
+import { render } from "@testing-library/react";
+import {useEffect, useState, useCallback} from "react"
 import triviaService from "../services/trivia-service";
 import NavBar from "./NavBar";
 import Question from "./Question/Question";
 
-function Search() {
+const Search = () => {
     const [searchQuestion, setSearchQuestion] = useState('');
     const [trivia, setTrivia] = useState([]);
 
-    const search = () => {
-        triviaService.findTriviaByQuestion(searchQuestion)
-        .then(res => setTrivia(res))
+    const search =()=> {
+        if(searchQuestion===""){
+            findAll();
+        } else {
+            triviaService.findTriviaByQuestion(searchQuestion)
+            .then(res => setTrivia(res))
+        }
+        
     }
 
     const findAll = () => {
@@ -18,10 +24,10 @@ function Search() {
     }
 
     useEffect(() => {
-        triviaService.findAllTrivia()
-        .then(trivia => setTrivia(trivia))
-    }, [1]);
+        search()
+    }, [search, searchQuestion, trivia]);
     
+
     return (
         <div>
             <div style={{position:"sticky", top:"0", zIndex:"100"}} >
@@ -43,13 +49,11 @@ function Search() {
 
             <div className="home">
                 {trivia.map(trivia => {
-                    return(<Question trivia={trivia} />
-                        ) 
+                    return(<Question key={trivia._id} trivia={trivia} />) 
                 })}
             </div>
         </div>
     );
-    
 }
 
 export default Search;

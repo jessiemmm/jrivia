@@ -1,11 +1,23 @@
-import {useEffect, useState} from "react"
+import {useLayoutEffect, useState} from "react"
+import triviaService from "../../services/trivia-service";
+import userService from "../../services/user-service";
 import "./Question.css"
 
 function Question({trivia}) {
-
+    const u = JSON.parse(localStorage.getItem("user"));
     const [selected, setSelected] = useState("");
 
     const [options] = useState(trivia.incorrect_answers.concat(trivia.correct_answer).sort((a, b) => 0.5 - Math.random()));
+    const [bookmarkColor, setBookmarkColor] = useState("");
+
+    useLayoutEffect(() => {
+        if(u) {
+            const uFavorites = u.favorite_trivia_ids;
+            if(uFavorites.includes(trivia._id)) {
+                setBookmarkColor("red");
+            }
+        }
+    }, [trivia._id, u])
     
 
     const submit= () => {
@@ -20,12 +32,25 @@ function Question({trivia}) {
         }
     }
 
-    const deleteQuestion = () => {
+    const deleteQuestion = (event) => {
         //call triviaService delete Question
+        triviaService.deleteTrivia(trivia._id);
     }
 
     const favoriteQuestion = () => {
-        //call userService update users favorite questions
+        if(bookmarkColor !== "red"){
+            setBookmarkColor("red");
+            u.favorite_trivia_ids = [...u.favorite_trivia_ids, trivia._id];
+            userService.bookmarkTrivia(u);
+            localStorage.setItem("user", JSON.stringify(u))
+            console.log(u);
+        } else {
+            setBookmarkColor("");
+            u.favorite_trivia_ids = u.favorite_trivia_ids.filter((id) => {return(id !== trivia._id)})
+            userService.bookmarkTrivia(u);
+            localStorage.setItem("user", JSON.stringify(u))
+            console.log(u);
+        }
     }
 
     const renderSubmit = () => {
@@ -39,9 +64,13 @@ function Question({trivia}) {
             const u = JSON.parse(localStorage.getItem("user")).user_type;
             
             if(u === "general") {
-                return (<p onClick={favoriteQuestion}>favorite icon</p>)
+                return (
+                    <i onClick={favoriteQuestion} style={{color: bookmarkColor}} class="fas fa-bookmark fa-2x"></i>
+                )
             } else if (u === "moderator") {
-                return (<p onClick={deleteQuestion}>delete question</p>)
+                return (
+                    <i onClick={deleteQuestion} class="fas fa-trash fa-2x"></i>
+                )
             }
         }
     }
@@ -51,10 +80,10 @@ function Question({trivia}) {
         
         <div className="container card border-primary" id="question-container">
             <div className="row" id="question-row">
-                <div className="col-10">
-                    <p>{trivia.question}</p>
+                <div className="col-11">
+                    <h3>{trivia.question}</h3>
                 </div>
-                <div className="col-2">
+                <div className="col-1">
                     {renderIcon()}
                 </div>
                 
@@ -63,7 +92,7 @@ function Question({trivia}) {
                 { // display each option
                 options.map((v, i) => {
                     return(
-                        <div>
+                        <div key={i + "_" + trivia._id}>
                             <input className="btn-check" type="radio" name={trivia._id} id={i + "_" + trivia._id} value={v} onChange={event=> setSelected(event.target.value)} />
                             <label className="btn btn-outline-primary" htmlFor={i + "_" + trivia._id}>{v}</label>
                         </div>
