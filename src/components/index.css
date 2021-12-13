@@ -1,5 +1,5 @@
 
-.card {
+#signin-card {
     max-width: 40rem;
     margin: 0 auto;
     float: none;
@@ -9,3 +9,4 @@
 .privacy-link {
     float: right;
 }
+

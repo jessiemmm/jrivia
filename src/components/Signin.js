@@ -38,7 +38,8 @@ function Signin() {
     return (
         <div>
             <NavBar/>
-            <div className="card border-dark mb-3">
+            <div className="container">
+            <div className="card border-dark mb-3" id="signin-card">
                 <div className="card-header">Have an account?</div>
                 <div className="card-body">
                     <h4 className="card-title">Sign In</h4>
@@ -67,6 +68,7 @@ function Signin() {
                     </p>
 
                 </div>
+            </div>
             </div>
             {/*<input type="text" id="username-input" onChange={event => setUsername(event.target.value)}/>
             <input type="password" id="password-input" onChange={event => setPassword(event.target.value)}/>
