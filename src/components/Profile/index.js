@@ -11,6 +11,8 @@ function Profile() {
     const [editPassword, setEditPassword] = useState(false);
     const [newPassword, setNewPassword] = useState("");
 
+    const [favoriteQs, setFavorites] = useState([]);
+
     const getUser = () => {
         userService.findUserByName(username).then(res => setU(res[0]))
     }

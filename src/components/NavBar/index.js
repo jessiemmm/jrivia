@@ -9,9 +9,9 @@ function NavBar() {
             return(
                 <>
                     <Link to={'/profile/' + name}>
-                        <div className="user-img">
+                        <button type="button" className="btn btn-outline-secondary">
                             <i className="far fa-user"> My Profile</i>
-                        </div>
+                        </button>
                     </Link>
                     <Logout/>
                     </>)
@@ -19,11 +19,15 @@ function NavBar() {
             return (
                 <>
                     <Link to="/register">
-                        <p className="mt-3">Register</p>
+                        <button type="button" className="btn btn-outline-secondary">
+                            Register
+                        </button>
                     </Link>
-                    <p className="mt-3"> &nbsp; | &nbsp;</p>
+                    <p className="mt-3"> &nbsp; &nbsp;</p>
                 <Link to="/signin">
-                    <p className="mt-3">Sign In</p>
+                    <button type="button" className="btn btn-outline-secondary">
+                        Sign In
+                    </button>
                 </Link>
             </>
                 
