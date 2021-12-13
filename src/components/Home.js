@@ -4,6 +4,7 @@ import { render } from "@testing-library/react";
 import CreateTrivia from "./CreateTrivia";
 import Logout from "./Logout";
 import Question from "./Question/Question";
+import NavBar from "./NavBar";
 
 function Home(props) {
     
@@ -19,8 +20,7 @@ function Home(props) {
             <p>
                 {localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).username : <></>}
             </p>
-            
-            <Logout />
+            <NavBar/>
             <CreateTrivia/>
             <div className="home">
                 {trivia.map(trivia => {
