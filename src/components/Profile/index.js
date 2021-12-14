@@ -1,8 +1,10 @@
-import {useEffect, useState} from "react"
+import {useEffect, useLayoutEffect, useState} from "react"
 import { useParams } from "react-router-dom";
-import userService from "../../services/user-service"
+import userService, {findUserByName} from "../../services/user-service"
 import "./index.css";
 import NavBar from "../NavBar";
+import service from "../../services/trivia-service";
+import Question from "../Question/Question";
 
 function Profile() {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -11,7 +13,9 @@ function Profile() {
     const [editPassword, setEditPassword] = useState(false);
     const [newPassword, setNewPassword] = useState("");
 
-    const [favoriteQs, setFavorites] = useState([]);
+    const [trivias, setTrivias] = useState([]);
+    const [favoriteQs, setFavs] = useState([]);
+
 
     const getUser = () => {
         userService.findUserByName(username).then(res => setU(res[0]))
@@ -55,6 +59,33 @@ function Profile() {
         getUser()
     }, [getUser, u]);
 
+    let favIDs = [];
+    const getQs = ()  => {
+        for (let i = 0; i < user.favorite_trivia_ids.length; i++) {
+            console.log(user.favorite_trivia_ids.length);
+            if (favIDs.includes(user.favorite_trivia_ids[i])) {
+                break;
+            } else {
+                favIDs.push(user.favorite_trivia_ids[i])
+                service.findTriviaById(favIDs[i])
+                    .then(trivia => setTrivias(trivia))
+
+            }
+        }
+
+        console.log(trivias)
+        console.log(favIDs)
+        //renderQuestion()
+    }
+
+    const renderQuestion = () => {
+        if(trivias.length !== 0) {
+            {trivias.forEach((trivia) => {
+                return (<Question trivia={trivia} />)
+            })}
+        }
+    }
+
     return (
         <>
         <NavBar/>
@@ -86,6 +117,14 @@ function Profile() {
                         </div>
                         <div className = "favorite-questions mt-5">
                             <h2>Favorite Questions</h2>
+                            <div>
+                                <button type="button" className="btn btn-outline-secondary"
+                                onClick={getQs}>See A Random Favorite</button>
+                                {trivias.map(trivia => {
+                                    return(<Question key={trivia._id} trivia={trivia} />
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>
