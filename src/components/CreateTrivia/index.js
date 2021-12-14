@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Button from "react-bootstrap/Button"
+import Admin from "../Admin";
 
 const CreateTrivia = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -135,15 +136,23 @@ const CreateTrivia = () => {
                                   onChange={(event) =>
                                       setIncorrect4(event.target.value)}/>
                 </Form.Group>
+                
+                <div className="row">
+                    <div className="col-9">
+                        <Button variant="primary" type="submit" onClick={createTrivia}>
+                            Create
+                        </Button>
+                    </div>
+                    <div style={{float:"right"}} className="col">
+                        <Admin />
+                    </div>
+                </div>
+                
 
-                <Button variant="primary" type="submit" onClick={createTrivia}>
-                    Create
-                </Button>
-
-
+                
             </Form>
 
-
+            
 
 
         </div>

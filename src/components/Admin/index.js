@@ -5,7 +5,7 @@ function Admin () {
     const [questions, setQuestions] = useState({})
 
     const createQuestions = () => {
-        fetch('https://opentdb.com/api.php?amount=20')
+        fetch('https://opentdb.com/api.php?amount=10')
         .then(response => response.json())
         .then(res => setQuestions(res.results));
         //console.log(questions)
@@ -13,7 +13,7 @@ function Admin () {
     }
 
     return (
-        <button onClick={() => createQuestions()}>Add 10</button>
+        <button className="btn btn-primary" onClick={() => createQuestions()}>Add 10 Random Questions</button>
     )
 }
 

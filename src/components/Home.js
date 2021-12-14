@@ -5,6 +5,7 @@ import Question from "./Question/Question";
 import NavBar from "./NavBar";
 import './index.css'
 
+
 function Home(props) {
     const user = localStorage.getItem("user");
     const [trivia, setTrivia] = useState([]);
