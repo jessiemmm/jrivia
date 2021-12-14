@@ -1,10 +1,8 @@
-import {useCallback, useEffect, useState} from "react"
+import {useEffect, useState} from "react"
 import { useParams, Link } from "react-router-dom";
-import userService, {findUserByName} from "../../services/user-service"
+import userService from "../../services/user-service"
 import "./index.css";
 import NavBar from "../NavBar";
-import triviaService from "../../services/trivia-service";
-import Question from "../Question/Question"
 
 function Profile() {
     const user = localStorage.getItem("user");
@@ -13,9 +11,8 @@ function Profile() {
     const [editPassword, setEditPassword] = useState(false);
     const [newPassword, setNewPassword] = useState("");
     const [passwordMsg, setPasswordMsg] = useState("");
-    const [trivia, setTrivia] = useState([]);
+    
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const getUser = () => {
         userService.findUserByName(username).then(res => setU(res[0]))
     }

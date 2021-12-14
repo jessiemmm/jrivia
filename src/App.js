@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import {BrowserRouter,Route, Link, Routes} from "react-router-dom";
+import {BrowserRouter,Route, Routes} from "react-router-dom";
 import './App.css';
 import Home from "./components/Home"
 import Register from "./components/Register"
@@ -10,14 +9,9 @@ import './vendors/bootstrap/vapor-bootstrap.min.css'
 import Privacy from "./components/Privacy";
 import About from "./components/About";
 import Admin from "./components/Admin";
-import CreateTrivia from "./components/CreateTrivia";
 import Details from './components/Details';
 
 function App() {
-  const [signIn, setSignIn] = useState(false);
-  const [username, setUsername] = useState('');
-
-
   return (
     <BrowserRouter>
       <div>

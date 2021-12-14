@@ -85,11 +85,11 @@ function Question({trivia}) {
             
             if(u === "general") {
                 return (
-                    <i onClick={favoriteQuestion} style={{color: bookmarkColor}} class="fas fa-bookmark fa-2x"></i>
+                    <i onClick={favoriteQuestion} style={{color: bookmarkColor}} className="fas fa-bookmark fa-2x"></i>
                 )
             } else if (u === "moderator") {
                 return (
-                    <i onClick={deleteQuestion} class="fas fa-trash fa-2x"></i>
+                    <i onClick={deleteQuestion} className="fas fa-trash fa-2x"></i>
                 )
             }
         }

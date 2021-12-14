@@ -1,5 +1,4 @@
-import { render } from "@testing-library/react";
-import {useEffect, useState, useCallback} from "react"
+import {useEffect, useState} from "react"
 import triviaService from "../services/trivia-service";
 import NavBar from "./NavBar";
 import Question from "./Question/Question";
@@ -43,13 +42,13 @@ const Search = () => {
 
                     <div className="col-11">
                         <div className="input-group mb-3">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <span className="input-group-text"><i className="fas fa-search"></i></span>
                             <input type="text" className="form-control" onChange={(event) => setSearchQuestion(event.target.value)} value={searchQuestion}/>
                         </div>
                     </div>
                 
                     <div className="col-1">
-                        <i class="fas fa-times fa-2x" onClick={() => {
+                        <i className="fas fa-times fa-2x" onClick={() => {
                             setSearchQuestion("");
                             findAll();
                         }}></i>
