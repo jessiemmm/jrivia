@@ -86,7 +86,9 @@ function Register() {
 
                                     &nbsp;
                                     {success}
-
+                                </div>
+                                <div className="privacy-link">
+                                    <Link to="/privacy">Privacy Policy</Link>
                                 </div>
 
 
