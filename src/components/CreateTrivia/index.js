@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col"
 import Button from "react-bootstrap/Button"
 
 const CreateTrivia = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
     const [triviaQuestion, setTrivia] = useState('');
     const [correctAnswer, setCorrect] = useState('');
     const [incorrectAnswer, setIncorrect] = useState('');
@@ -38,7 +39,8 @@ const CreateTrivia = () => {
                 question: triviaQuestion,
                 correct_answer: correctAnswer,
                 incorrect_answers: [incorrectAnswer, incorrectAnswer2,
-                    incorrectAnswer3, incorrectAnswer4]
+                    incorrectAnswer3, incorrectAnswer4],
+                question_owner: user.username
             }).then(res => console.log(res))
         }
     };

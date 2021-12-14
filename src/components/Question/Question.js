@@ -6,9 +6,11 @@ import "./Question.css"
 
 function Question({trivia}) {
     const u = JSON.parse(localStorage.getItem("user"));
+    const [border, setBorder] = useState("primary");
     const [selected, setSelected] = useState("");
     const [options] = useState(trivia.incorrect_answers.concat(trivia.correct_answer).sort((a, b) => 0.5 - Math.random()));
     const [bookmarkColor, setBookmarkColor] = useState("");
+    const [message, setMessage] = useState("");
 
     useLayoutEffect(() => {
         if(u) {
@@ -23,12 +25,24 @@ function Question({trivia}) {
     const submit= () => {
         if(selected === "") {
             //direct them to select an answer
-            console.log("PLEASE CHOOSE AN ANSWER BEFORE SELECTING");
+            setMessage("Please choose an answer first")
         } else if (selected === trivia.correct_answer) {
-            console.log("CORRECT");
             //update the questions tally and the users tally
+            u.correct_tally += 1;
+            trivia.correct_count += 1;
+            setBorder("success");
+            userService.updateUserTally(u);
+            triviaService.updateTriviaTally(trivia);
+            localStorage.setItem("user", JSON.stringify(u))
+            setMessage("Correct!")
         } else {
-            console.log("INCORRECT");
+            u.incorrect_tally += 1;
+            trivia.incorrect_count += 1;
+            setBorder("danger");
+            userService.updateUserTally(u);
+            triviaService.updateTriviaTally(trivia);
+            localStorage.setItem("user", JSON.stringify(u))
+            setMessage("Incorrect");
         }
     }
 
@@ -55,7 +69,13 @@ function Question({trivia}) {
 
     const renderSubmit = () => {
         if(localStorage.getItem("user")) {
-            return(<button onClick={submit}>submit</button>)
+            return(<button className="btn btn-secondary" id="submit-button" onClick={submit}>submit</button>)
+        }
+    }
+
+    const renderMessage = () => {
+        if(message !== ""){
+            return(<p>{message}</p>)
         }
     }
 
@@ -77,16 +97,17 @@ function Question({trivia}) {
     
 
     return (
-        <Link to={`/details/${trivia._id}`} style={{textDecoration: "none"}}>
+        
 
         
-        <div className="container card border-primary" id="question-container">
+        <div className={`container card border-${border}`} id="question-container">
             <div className="row" id="question-row">
-                <div className="col-11">
+                <div className="col-10">
                     <h3>{trivia.question}</h3>
                 </div>
-                <div className="col-1">
+                <div className="col-2">
                     {renderIcon()}
+                    <Link to={`/details/${trivia._id}`} style={{textDecoration: "none"}}><button className="btn btn-secondary" style={{float:"right"}}>Details</button></Link>
                 </div>
                 
             </div>
@@ -96,16 +117,21 @@ function Question({trivia}) {
                     return(
                         <div key={i + "_" + trivia._id}>
                             <input className="btn-check" type="radio" name={trivia._id} id={i + "_" + trivia._id} value={v} onChange={event=> setSelected(event.target.value)} />
-                            <label className="btn btn-outline-primary" htmlFor={i + "_" + trivia._id}>{v}</label>
+                            <label className={`btn btn-outline-${border}`} htmlFor={i + "_" + trivia._id}>{v}</label>
                         </div>
                     )
                 })}
             </div>
-            
-            {renderSubmit()}
-            
+            <div className="row">
+                <div className="col-1">
+                    {renderSubmit()}
+                </div> 
+                <div className="col">
+                    {renderMessage()}
+                </div>
+            </div>
         </div>
-        </Link>
+        
         
     )
 }

@@ -5,13 +5,19 @@ import Question from "./Question/Question";
 import NavBar from "./NavBar";
 
 function Home(props) {
-    
+    const user = localStorage.getItem("user");
     const [trivia, setTrivia] = useState([]);
 
     useEffect(() => {
         service.findAllTrivia()
         .then(trivia => setTrivia(trivia))
     });
+
+    const renderCreate = () => {
+        if(user && JSON.parse(user).user_type === "moderator") {
+            return (<CreateTrivia/>)
+        }
+    } 
     
     return (
         <div>
@@ -19,10 +25,8 @@ function Home(props) {
                 <NavBar />
             </div>
             
-            <p>
-                {localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).password : <></>}
-            </p>
-            <CreateTrivia/>
+            <br />
+            {renderCreate()}
             <div className="home">
                 {trivia.map(trivia => {
                     return(<Question key={trivia._id} trivia={trivia} />

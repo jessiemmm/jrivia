@@ -52,6 +52,15 @@ export const bookmarkTrivia = (user) =>
           'content-type': 'application/json'
         }
       }).then(response => response.json());
+
+export const updateUserTally = (user) =>
+      fetch(`${URL}/tally/${user._id}`, {
+        method: 'PUT',
+        body: JSON.stringify(user),
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(response => response.json());
     
   
   
@@ -62,5 +71,6 @@ export default {
     findUserById,
     findUserByName,
     updateUser,
-    login, bookmarkTrivia
+    login, bookmarkTrivia,
+    updateUserTally
 };

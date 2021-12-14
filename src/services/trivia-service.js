@@ -34,6 +34,15 @@ export const updateTrivia = (trivia) =>
           'content-type': 'application/json'
         }
       }).then(response => response.json());
+
+export const updateTriviaTally = (trivia) =>
+    fetch(`${URL}/tally/${trivia._id}`, {
+      method: 'PUT',
+      body: JSON.stringify(trivia),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json());
     
   
   
@@ -43,5 +52,6 @@ export default {
     createTrivia, 
     findTriviaById,
     updateTrivia,
-    findTriviaByQuestion
+    findTriviaByQuestion,
+    updateTriviaTally
 };

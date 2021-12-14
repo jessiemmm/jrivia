@@ -1,10 +1,9 @@
-#answers-container {
-
-}
-
 #question-container {
     border-radius: 12px;
     padding: 10px;
-
     margin-bottom: 20px;
+}
+
+#submit-button {
+    margin-left:10px;
 }
