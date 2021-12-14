@@ -23,7 +23,7 @@ function NavBar() {
                             Register
                         </button>
                     </Link>
-                    <p className="mt-3"> &nbsp; &nbsp;</p>
+                    &nbsp; &nbsp;
                 <Link to="/signin">
                     <button type="button" className="btn btn-outline-secondary">
                         Sign In
