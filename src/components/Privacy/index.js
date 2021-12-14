@@ -57,9 +57,7 @@ function Privacy() {
                             pleasure of our users. If someone does gain access to our database,
                             that is not because we sold the information. Jrivia is an entertainment
                             site, meant for fun and enjoyment, so we do not sell your information
-                            to anyone and we do not host any advertisements. There are no traps
-                            that the users can fall in – there are no steps needed to opt-out of
-                            promotions or news, or anything of the sort. </p>
+                            to anyone and we do not host any advertisements. </p>
                     </p>
                 </div>
             </div>
