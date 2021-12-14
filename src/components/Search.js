@@ -3,20 +3,13 @@ import {useEffect, useState, useCallback} from "react"
 import triviaService from "../services/trivia-service";
 import NavBar from "./NavBar";
 import Question from "./Question/Question";
+import "./index.css"
 
 const Search = () => {
     const [searchQuestion, setSearchQuestion] = useState('');
     const [trivia, setTrivia] = useState([]);
 
-    const search = () => {
-        if(searchQuestion===""){
-            findAll();
-        } else {
-            triviaService.findTriviaByQuestion(searchQuestion)
-            .then(res => setTrivia(res))
-        }
-        
-    }
+    
 
     const findAll = () => {
         triviaService.findAllTrivia()
@@ -24,8 +17,18 @@ const Search = () => {
     }
 
     useEffect(() => {
+        const search = () => {
+            if(searchQuestion===""){
+                findAll();
+            } else {
+                triviaService.findTriviaByQuestion(searchQuestion)
+                .then(res => setTrivia(res))
+            }
+            
+        }
+
         search()
-    }, [search, searchQuestion, trivia]);
+    }, [searchQuestion]);
     
 
     return (
@@ -33,18 +36,25 @@ const Search = () => {
             <div style={{position:"sticky", top:"0", zIndex:"100"}} >
                 <NavBar />
             </div>
-            
-            <p>
-                {localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).username : <></>}
-            </p>
+            <br />
             {/*THIS IS THE SEARCH COMPONENT ITSELF*/} 
-            <div>
-                <input type="text" onChange={(event) => setSearchQuestion(event.target.value)} value={searchQuestion} />
-                <button onClick={search}>search</button>
-                <i class="fas fa-times fa-2x" onClick={() => {
-                    setSearchQuestion("");
-                    findAll();
-                }}></i>
+            <div className="container">
+                <div className="row">
+
+                    <div className="col-11">
+                        <div className="input-group mb-3">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" className="form-control" onChange={(event) => setSearchQuestion(event.target.value)} value={searchQuestion}/>
+                        </div>
+                    </div>
+                
+                    <div className="col-1">
+                        <i class="fas fa-times fa-2x" onClick={() => {
+                            setSearchQuestion("");
+                            findAll();
+                        }}></i>
+                    </div>
+                </div>
             </div>
 
             <div className="home">

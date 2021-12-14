@@ -9,6 +9,7 @@ import Search from "./components/Search"
 import './vendors/bootstrap/vapor-bootstrap.min.css'
 import Privacy from "./components/Privacy";
 import About from "./components/About";
+import Admin from "./components/Admin";
 import CreateTrivia from "./components/CreateTrivia";
 import Details from './components/Details';
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/about" element={<About />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/details/:id" element={<Details />} />
         </Routes>
       </div>
