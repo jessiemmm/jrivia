@@ -45,7 +45,7 @@ function Profile() {
                 return (
                     <div className="row">
                         <div className="col-4">
-                            Password: <span> {user.password}&#183;&#183;&#183;&#183;&#183;&#183;&#183;</span>
+                            Password: <span> &#183;&#183;&#183;&#183;&#183;&#183;&#183;</span>
                         </div>
                         <div className="col-2">
                             <i class="fas fa-pencil-alt" onClick={() => setEditPassword(true)}></i>

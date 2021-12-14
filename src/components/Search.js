@@ -8,7 +8,7 @@ const Search = () => {
     const [searchQuestion, setSearchQuestion] = useState('');
     const [trivia, setTrivia] = useState([]);
 
-    const search =()=> {
+    const search = () => {
         if(searchQuestion===""){
             findAll();
         } else {
