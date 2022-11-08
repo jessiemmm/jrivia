@@ -1,6 +1,7 @@
 # Deployment
 
 This project is deployed on: https://jrivia.herokuapp.com/
+
 The node server repository is located at: https://github.com/jaredrudnicki/jrivia-node
 
 ## About
